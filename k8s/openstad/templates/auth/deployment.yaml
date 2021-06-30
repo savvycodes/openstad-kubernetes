@@ -33,6 +33,10 @@ spec:
             - name: http
               containerPort: {{ .Values.auth.service.httpPort }}
         env:
+          - name: LOGO
+            value: "amsterdam-logo.html"
+          # - name: STYLESHEETS
+          #   value: "https://fast.fonts.net/cssapi/88ed95f9-d020-4dee-be83-444c3ada1a0e.css,/css/vendor/avenir.css"
           # HOSTING
           - name: APP_URL
             value: https://{{ template "openstad.auth.url" . }}
@@ -98,8 +102,8 @@ spec:
           - name: MAIL_SERVER_PORT
             value: "{{ .Values.secrets.mail.auth.port }}"
 
-          - name: MAIL_SERVER_SECURE
-            value: "yes"
+          # - name: MAIL_SERVER_SECURE
+          #   value: "yes"
 
           - name: MAIL_SERVER_PASSWORD
             value: "{{ .Values.secrets.mail.auth.password }}"

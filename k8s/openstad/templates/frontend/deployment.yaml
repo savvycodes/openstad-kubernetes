@@ -28,6 +28,10 @@ spec:
               containerPort: {{ .Values.frontend.service.httpPort }}
               protocol: TCP
           env:
+            - name: LOGO_AMSTERDAM
+              value: 'yes'
+            - name: OPENSTAD_COMPONENTS_URL
+              value: 'https://unpkg.com/openstad-components@0.1.22/dist'
             - name: DEFAULT_HOST
               value: www.{{ .Values.host.base }}
             - name: APP_URL
@@ -87,10 +91,6 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: status.podIP
-{{- if and .Values.frontend.ingress.enabled ((.Values.clusterIssuer.useProdIssuer | not) or (eq (index .Values.frontend.ingress.annotations "cert-manager.io/cluster-issuer") "letsencrypt-staging")) }}
-            - name: NODE_TLS_REJECT_UNAUTHORIZED
-              value: "0"
-{{- end }}
 
           resources:
 {{ toYaml .Values.frontend.resources | indent 12 }}

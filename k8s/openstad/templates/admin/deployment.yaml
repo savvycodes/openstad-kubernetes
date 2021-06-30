@@ -72,6 +72,9 @@ spec:
 
           - name: KUBERNETES_FRONTEND_SERVICE_PORT
             value: '{{ .Values.frontend.service.httpPort }}'
+          
+          - name: NODE_OPTIONS
+            value: '--max_old_space_size=4096'
 
           # KUBERNETES
           - name: COOKIE_SECRET
