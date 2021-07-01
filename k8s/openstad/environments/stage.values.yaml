@@ -1,6 +1,6 @@
 frontend:
   deploymentContainer:
-    image: savvycodes/openstad-frontend:feat-event-planner-e246ee6
+    image: savvycodes/openstad-frontend:feat-event-planner-4ab7358
 auth:
   deploymentContainer:
     image: openstad/auth:v0.13.0
@@ -9,7 +9,7 @@ admin:
     image: openstad/admin:v0.13.0
 api:
   deploymentContainer:
-    image: savvycodes/openstad-api:feat-event-planner-90dd819
+    image: savvycodes/openstad-api:feat-event-planner-e942e58
 image:
   deploymentContainer:
     image: openstad/image:v0.7.0
