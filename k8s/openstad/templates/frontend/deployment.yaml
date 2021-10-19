@@ -30,8 +30,10 @@ spec:
           env:
             - name: LOGO_AMSTERDAM
               value: 'yes'
-            - name: OPENSTAD_COMPONENTS_URL
-              value: 'https://unpkg.com/openstad-components@0.1.22/dist'
+            - name: OPENSTAD_COMPONENTS_CDN
+              value: 'https://unpkg.com/@savvycodes/openstad-components@0.32.0-beta.6/dist'
+            - name: OPENSTAD_REACT_ADMIN_CDN
+              value: 'https://unpkg.com/@savvycodes/openstad-react-admin@0.33.0-beta.1/dist'
             - name: DEFAULT_HOST
               value: www.{{ .Values.host.base }}
             - name: APP_URL
@@ -91,6 +93,29 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: status.podIP
+            
+            - name: SMTP_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: port
+                  name: openstad-api-mail
+            - name: SMTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: host
+                  name: openstad-api-mail
+            - name: SMTP_USER
+              valueFrom:
+                secretKeyRef:
+                  key: user
+                  name: openstad-api-mail
+            - name: SMTP_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: openstad-api-mail
+            - name: SMTP_SECURE
+              value: "false"
 
           resources:
 {{ toYaml .Values.frontend.resources | indent 12 }}

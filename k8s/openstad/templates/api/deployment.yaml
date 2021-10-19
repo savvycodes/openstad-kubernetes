@@ -21,6 +21,9 @@ spec:
       serviceAccountName: openstad-ingress-sa
       containers:
         - env:
+          - name: NODE_ENV
+            value: production
+
           - name: API_URL
             value: https://{{ template "openstad.api.url" . }}
 
