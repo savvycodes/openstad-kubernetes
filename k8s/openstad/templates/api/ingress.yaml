@@ -4,7 +4,7 @@
 {{ $servicePort := .Values.api.service.httpPort }}
 {{ $tls := .Values.api.ingress.tls }}
 
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 
 metadata:

@@ -156,7 +156,6 @@ frontend:
     annotations:
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
-      nginx.ingress.kubernetes.io/proxy-body-size: 128m
       nginx.ingress.kubernetes.io/configuration-snippet: |
         more_set_headers "X-Content-Type-Options: nosniff";
         more_set_headers "X-Frame-Options: SAMEORIGIN";
@@ -171,13 +170,13 @@ frontend:
   # Resources:
   resources:
     # Max resources
-    limits:
-      cpu: 1
-      memory: 1Gi
+    # limits:
+    #   cpu: 1
+    #   memory: 1Gi
     # Min resources
     requests:
-      cpu: 500m
-      memory: 500M
+      cpu: 1
+      memory: 2Gi
 
   # Probe checks whether the service is healthy:
   # First time after $(initialDelaySeconds) seconds.
@@ -238,7 +237,6 @@ adminer:
     enabled: false # Whether there is a ingress for this service
     annotations:
       kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/proxy-body-size: 128m
       nginx.ingress.kubernetes.io/configuration-snippet: |
         more_set_headers "X-Content-Type-Options: nosniff";
         more_set_headers "X-Frame-Options: SAMEORIGIN";
@@ -253,9 +251,9 @@ adminer:
   # Resources:
   resources:
     # Max resources
-    limits:
-      cpu: 100m
-      memory: 1Gi
+    # limits:
+    #   cpu: 100m
+    #   memory: 1Gi
     # Min resources
     requests:
       cpu: 100m
@@ -315,9 +313,9 @@ auth:
   # Resources:
   resources:
     # Max resources
-    limits:
-      cpu: 300m
-      memory: 1Gi
+    # limits:
+    #   cpu: 300m
+    #   memory: 1Gi
     # Min resources
     requests:
       cpu: 100m
@@ -339,7 +337,8 @@ admin:
   # Configure how many replicas exists of this service
   replicas: 1
   siteId: "1"
-  externalSiteRepo: https://api2.openstad.amsterdam/api/repo
+  externalSiteRepo: https://api.openstad.amsterdam.nl/api/template/site
+  openstadReactAdminCdn: "https://cdn.jsdelivr.net/npm/openstad-react-admin/dist"
 
   # Configure how the service is named and labeled
   name: "admin"
@@ -368,7 +367,6 @@ admin:
     enabled: true # Whether there is a ingress for this service
     annotations:
       kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/proxy-body-size: 128m
       nginx.ingress.kubernetes.io/configuration-snippet: |
         more_set_headers "X-Content-Type-Options: nosniff";
         more_set_headers "X-Frame-Options: SAMEORIGIN";
@@ -383,9 +381,9 @@ admin:
   # Resources:
   resources:
     # Max resources
-    limits:
-      cpu: 500m
-      memory: 1Gi
+    # limits:
+    #   cpu: 500m
+    #   memory: 1Gi
     # Min resources
     requests:
       cpu: 100m
@@ -440,7 +438,6 @@ api:
     enabled: true # Whether there is a ingress for this service
     annotations:
       kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/proxy-body-size: 128m
       nginx.ingress.kubernetes.io/configuration-snippet: |
         more_set_headers "X-Content-Type-Options: nosniff";
         more_set_headers "X-Frame-Options: SAMEORIGIN";
@@ -455,9 +452,9 @@ api:
   # Resources:
   resources:
     # Max resources
-    limits:
-      cpu: 500m
-      memory: 1Gi
+    # limits:
+    #   cpu: 500m
+    #   memory: 1Gi
     # Min resources
     requests:
       cpu: 250m
@@ -504,7 +501,6 @@ image:
     enabled: true # Whether there is a ingress for this service
     annotations:
       kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/proxy-body-size: 128m
       nginx.ingress.kubernetes.io/configuration-snippet: |
         more_set_headers "X-Content-Type-Options: nosniff";
         more_set_headers "X-Frame-Options: SAMEORIGIN";
@@ -519,9 +515,9 @@ image:
   # Resources:
   resources:
     # Max resources
-    limits:
-      cpu: 500m
-      memory: 1Gi
+    # limits:
+    #   cpu: 500m
+    #   memory: 1Gi
     # Min resources
     requests:
       cpu: 100m

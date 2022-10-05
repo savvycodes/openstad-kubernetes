@@ -25,6 +25,8 @@ spec:
             - name: http
               containerPort: {{ .Values.image.service.httpPort }}
         env:
+          - name: NODE_ENV
+            value: production
           - name: DB_HOST
             valueFrom:
               secretKeyRef:

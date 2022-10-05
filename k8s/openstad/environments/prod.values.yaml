@@ -1,18 +1,25 @@
 frontend:
   deploymentContainer:
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     image: savvycodes/openstad-frontend:feat-event-favorites-9c4e027
+=======
+    # image: savvycodes/openstad-frontend:chore-upgrade-5db78cc
+    image: savvycodes/openstad-frontend:feat-events-resource-page-ca1ad24
+>>>>>>> Stashed changes
 auth:
   deploymentContainer:
-    image: openstad/auth:v0.16.0
+    image: openstad/auth:v0.40.1
 admin:
+  openstadReactAdminCdn: https://unpkg.com/@savvycodes/openstad-react-admin@0.33.0-beta.1/dist
   deploymentContainer:
-    image: openstad/admin:v0.19.3-beta
+    image: openstad/admin:v0.40.0
 api:
   deploymentContainer:
-    image: savvycodes/openstad-api:feat-event-favorites-0c60247
+    image: savvycodes/openstad-api:fix-expired-events-38719ed
 image:
   deploymentContainer:
+<<<<<<< Updated upstream
     image: openstad/image:v0.7.0
 =======
     image: openstad/frontend:v0.10.1
@@ -29,3 +36,6 @@ image:
   deploymentContainer:
     image: openstad/image:v0.7.0
 >>>>>>> upstream/master
+=======
+    image: openstad/image:v0.40.0
+>>>>>>> Stashed changes

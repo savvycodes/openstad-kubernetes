@@ -33,10 +33,12 @@ spec:
             - name: http
               containerPort: {{ .Values.auth.service.httpPort }}
         env:
+          - name: NODE_ENV
+            value: production
           - name: LOGO
-            value: "amsterdam-logo.html"
-          # - name: STYLESHEETS
-          #   value: "https://fast.fonts.net/cssapi/88ed95f9-d020-4dee-be83-444c3ada1a0e.css,/css/vendor/avenir.css"
+            value: 'amsterdam-logo.html'
+          - name: STYLESHEETS
+            value: 'https://fast.fonts.net/cssapi/88ed95f9-d020-4dee-be83-444c3ada1a0e.css,/css/vendor/avenir.css'
           # HOSTING
           - name: APP_URL
             value: https://{{ template "openstad.auth.url" . }}
@@ -140,7 +142,7 @@ spec:
             value: https://{{ template "openstad.auth.url" . }}/email
 
           - name: FRONTEND_URL
-            value: https://www.{{ .Values.host.base }}
+            value: https://{{ template "openstad.frontend.url" . }}
 
           - name: ADMIN_URL
             value: https://{{ template "openstad.admin.url" . }}
@@ -179,7 +181,10 @@ spec:
                 name: openstad-auth-credentials
 
           - name: FROM_EMAIL
-            value: {{ .Values.secrets.mail.auth.user }}
+            valueFrom:
+              secretKeyRef:
+                key: email_from
+                name: openstad-api-mail
 
           - name: DEFAULT_FAVICON
             value: {{ .Values.auth.defaultFavicon }}
@@ -241,6 +246,6 @@ spec:
           valueFrom:
               secretKeyRef:
                 name: openstad-auth-db
-                key: database          
+                key: database
         command: ["/bin/sh","-c"]
         args: ['knex migrate:latest']

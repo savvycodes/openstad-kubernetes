@@ -33,7 +33,7 @@ spec:
             - name: OPENSTAD_COMPONENTS_CDN
               value: 'https://unpkg.com/@savvycodes/openstad-components@0.32.0-beta.6/dist'
             - name: OPENSTAD_REACT_ADMIN_CDN
-              value: 'https://unpkg.com/@savvycodes/openstad-react-admin@0.33.0-beta.1/dist'
+              value: "{{ .Values.admin.openstadReactAdminCdn }}"
             - name: DEFAULT_HOST
               value: www.{{ .Values.host.base }}
             - name: APP_URL
@@ -181,6 +181,12 @@ spec:
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
 {{- end }}
+
+            - name: NODE_ENV
+              value: "production"       
+
+            - name: STYLESHEETS
+              value: 'https://fast.fonts.net/cssapi/88ed95f9-d020-4dee-be83-444c3ada1a0e.css,/css/defaults/avenir-typography.css'     
 
           resources:
 {{ toYaml .Values.frontend.resources | indent 12 }}

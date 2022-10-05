@@ -56,7 +56,7 @@ spec:
             value: "no"
 
           - name: FRONTEND_URL
-            value: https://{{ .Values.host.base }}
+            value: https://{{ template "openstad.frontend.url" . }}
 
           - name: PUBLIC_IP
             value: {{ .Values.host.publicIp }}
@@ -163,5 +163,13 @@ spec:
               secretKeyRef:
                 key: image_api_token
                 name: openstad-auth-credentials
+
+          
+          - name: OPENSTAD_REACT_ADMIN_CDN
+            value: "{{ .Values.admin.openstadReactAdminCdn }}"
+
+          - name: NODE_ENV
+            value: production
+
         resources:
 {{ toYaml .Values.admin.resources | indent 12 }}
