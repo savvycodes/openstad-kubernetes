@@ -1,5 +1,6 @@
 frontend:
   deploymentContainer:
+<<<<<<< HEAD
     image: savvycodes/openstad-frontend:feat-event-favorites-9c4e027
 auth:
   deploymentContainer:
@@ -13,3 +14,18 @@ api:
 image:
   deploymentContainer:
     image: openstad/image:v0.7.0
+=======
+    image: openstad/frontend:v0.10.1
+auth:
+  deploymentContainer:
+    image: openstad/auth:v0.10.0
+admin:
+  deploymentContainer:
+    image: openstad/admin:v0.10.2
+api:
+  deploymentContainer:
+    image: openstad/api:v0.10.0
+image:
+  deploymentContainer:
+    image: openstad/image:v0.7.0
+>>>>>>> upstream/master

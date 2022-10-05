@@ -18,6 +18,9 @@
   hostname: {{ .Values.secrets.mongodb.hostname | default (printf "%s-mongodb.%s.svc.cluster.local" .Release.Name .Release.Namespace) | b64enc }}
   hostport: {{ .Values.secrets.mongodb.hostport | default 27017 | toString | b64enc }}
   database: {{ .Values.secrets.mongodb.database | default "openstad_mongodb" | b64enc }}
+  user: {{ .Values.secrets.mongodb.user | default "" | b64enc }}
+  password: {{ .Values.secrets.mongodb.password | default "" | b64enc }}
+  auth-source: {{ .Values.secrets.mongodb.authSource | default "" | b64enc }}
 {{- end }}
 
 {{- define "cookieSecret" -}}
@@ -61,6 +64,14 @@
   key: {{ .Values.S3.key | default "xxxxx" | b64enc }}
   secret:  {{ .Values.S3.secret | default "yyyyy" | b64enc }}
   bucket:  {{ .Values.S3.bucket | default "openstad" | b64enc }}
+{{- end }}
+
+{{- define "FrontendS3Secret" -}}
+  endpoint: {{ .Values.frontend.S3.endpoint | default "" | b64enc }}
+  key: {{ .Values.frontend.S3.key | default "" | b64enc }}
+  secret: {{ .Values.frontend.S3.secret | default "" | b64enc }}
+  bucket: {{ .Values.frontend.S3.bucket | default "" | b64enc }}
+  region: {{ .Values.frontend.S3.region | default "" | b64enc }}
 {{- end }}
 
 {{- define "authCredSecret" -}}
