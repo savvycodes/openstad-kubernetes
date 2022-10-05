@@ -31,16 +31,24 @@ spec:
     - host: {{ 1 }}
       http:
         paths:
-          - backend:
-              serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $serviceName }}
+                port:
+                  number: {{ $servicePort }}
 {{- end }}
     - host: {{ template "openstad.adminer.url" . }}
       http:
         paths:
-          - backend:
-              serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $serviceName }}
+                port:
+                  number: {{ $servicePort }}
 
   tls:
     - secretName: {{ .Values.adminer.ingress.tls.secretName }}
