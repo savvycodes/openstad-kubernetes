@@ -1,6 +1,6 @@
 frontend:
   deploymentContainer:
-    image: savvycodes/openstad-frontend:feat-events-resource-page-ca1ad24
+    image: savvycodes/openstad-frontend:feat-events-resource-page-20f74c3
 auth:
   deploymentContainer:
     image: openstad/auth:v0.41.0
@@ -9,7 +9,8 @@ admin:
     image: openstad/admin:v0.41.0
 api:
   deploymentContainer:
-    image: savvycodes/openstad-api:fix-expired-events-38719ed
+    # image: savvycodes/openstad-api:fix-expired-events-38719ed
+    image: savvycodes/openstad-api:fix-expired-events-16f1547
 image:
   deploymentContainer:
     image: openstad/image:v0.40.0
